@@ -1,0 +1,9 @@
+# Fichier de configuration exemple - Separation-Evaluation
+# Les options ci-dessous correspondent aux flags CLI.
+# Cet exemple n'est pas charge automatiquement : il documente les valeurs par defaut.
+
+probleme         = ukp        # ukp | tsp
+fichier          =            # chemin vers l'instance
+verbosite        = normal     # silent | normal | verbose
+post_traitement  = 2opt       # 2opt | aucun
+export_csv       =            # repertoire ; vide = pas d'export

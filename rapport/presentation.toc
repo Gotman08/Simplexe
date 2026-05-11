@@ -1,0 +1,7 @@
+\babel@toc {french}{}\relax 
+\beamer@sectionintoc {1}{Contexte}{3}{0}{1}
+\beamer@sectionintoc {2}{Architecture du projet}{6}{0}{2}
+\beamer@sectionintoc {3}{Méthodes par séparation-évaluation}{8}{0}{3}
+\beamer@sectionintoc {4}{Méthodes OR-Tools}{11}{0}{4}
+\beamer@sectionintoc {5}{Étude expérimentale}{14}{0}{5}
+\beamer@sectionintoc {6}{Discussion et conclusion}{22}{0}{6}

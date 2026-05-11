@@ -1,0 +1,97 @@
+Passer au contenu principal
+Accès au tableau de bord
+Tableau de bord
+Plus
+8
+CHPS_0805
+Projet
+Modalités d'évaluation et de remise
+
+Modalités d'évaluation et de remise
+Conditions d’achèvement
+Votre projet sera constitué en 3 parties : code, rapport écrit et exposé oral.
+
+Code
+Vous devez fournir deux applications :
+
+Méthodes par séparation-évaluation – Implémentées en C
+Méthodes OR-Tools – Implémentées en python
+Pour chaque application, vous ne devez pas fournir des codes indépendants, mais un seul code unifié permettant à l'utilisateur d'utiliser – simplement et facilement – l'une et/ou l'autre des méthodes en paramétrant le programme (par exemple par des paramètres en ligne de commande et/ou par un fichier de configuration) selon une documentation d'utilisation que vous fournirez.
+
+Pour chaque application, vous devez fournir les fichiers source (.c ou .py) de vos programmes et un Readme (fichier texte). Pour l’application C, vous devez fournir un Makefile permettant de construire l’application. Les Readme doivent documenter la manipulation et l'exécution de chaque application sur un ordinateur sous Linux (incluant WSL) : ligne de commande avec paramètres à spécifier, éventuels fichiers de configuration à modifier, ….
+
+Votre code sera testé sur un ordinateur fonctionnant sous Linux alors assurez-vous qu'il fonctionne correctement dans cet environnement avant la remise.
+Votre code sera évalué sur sa performance en temps d'exécution et en qualité de solution pour l'ensemble des méthodes développées, ainsi que sur sa clarté, sa propreté et son organisation. Plus particulièrement, assurez-vous qu’il soit facile de reproduire les résultats que vous mettrez en évidence dans votre rapport et votre présentation.
+
+Rapport écrit
+La première partie de votre rapport écrit doit présenter succinctement votre démarche de développement, par exemple :
+
+architecture des applications
+fonctionnement général
+choix méthodologiques et de développement
+principales fonctionnalités développées
+bibliothèques utilisées
+etc.
+Dans la deuxième partie, vous devez présenter une étude expérimentale comparative et une analyse pour l’ensemble des approches développées. Plus spécifiquement, il s’agit de comparer les résultats obtenus d’un côté par les approches « maison », et de l’autre côté par les approches OR-Tools. Est-ce que certaines approches sont meilleures que d’autres selon différents critères comme :
+
+le temps d’exécution ?
+le nombre de noeuds générés ?
+la qualité de l’optimisation ?
+le temps de développement ?
+etc.
+Pour cette partie, il est fortement conseillé d’utiliser quelques schémas/graphiques pour accompagner vos explications.
+
+Votre rapport doit se terminer par une petite discussion/conclusion sur les points forts et faibles de votre projet, les principales difficultés rencontrées, les améliorations possibles, etc.
+
+À titre indicatif, votre rapport ne devrait pas excéder une dizaine de pages. Si vous dépassez ce nombre, essayez d’être plus synthétique et de vous concentrer sur les éléments les plus importants de votre travail. La pertinence de la structuration du rapport et la qualité de la rédaction seront évaluées. Votre rapport doit être remis en format .pdf.
+
+Exposé oral
+Votre exposé oral consistera à présenter les éléments clés de votre travail et sera complété par une démonstration de votre application sur machine permettant de vérifier son bon fonctionnement et présenter quelques résultats.
+
+Pour la partie présentation, vous préparerez un support électronique de type powerpoint sur lequel vous baserez votre discours. Vous pouvez adopter une structure semblable à celle de votre rapport écrit.
+
+Pour la partie démonstration sur machine, il s’agit de montrer le bon fonctionnement de votre application et de présenter quelques résultats.
+
+Suite à votre exposé, vous aurez à répondre oralement à différentes questions portant sur les aspects algorithmiques, conceptuels et techniques de votre travail.
+
+Une durée de 20 minutes est prévue pour chaque étudiant : environ 15 minutes de présentation et de démonstration, et 5 minutes de questions.
+
+Les exposés oraux auront lieu le mardi 12 mai. Un planning sera établi et publié sur la page Moodle du cours. Un mail vous sera envoyé à l’avance à cet effet et vous aurez la possibilité de sélectionner votre créneau horaire.
+
+Remise du projet
+Au terme de votre projet, vous devrez rendre une copie de votre code, un rapport écrit et une présentation de type powerpoint. Pour le code, il devra être inclus dans un répertoire ayant une structure arborescente semblable à la suivante :
+
+Readme (si nécessaire)
+<Separation-Evaluation>
+Readme
+Makefile
+*.c
+*.h
+*.txt
+Fichiers de configuration (si nécessaire)
+...
+<OR-Tools>
+Readme
+*.py
+*.txt
+Fichiers de configuration (si nécessaire)
+...
+<Resultats>
+Fichiers de resultats
+...
+Une simple décompression de l'archive doit restaurer cette structure et permettre de tester votre application.
+
+Ne laissez pas les fichiers exécutables et .o, ni les gros fichiers tests (plus de 100 Ko) autres que le rapport dans l'archive que vous remettez. Vos codes doivent fonctionner dans un système Linux en ligne de commande avec les bibliothèques standard. Pour la partie OR-Tools/Python, vous pouvez installer des packages "officiels" (installables avec pip avec les dépôts standard) en plus des packages indiqués dans le cours 7.
+Ajoutez un petit fichier texte README qui donne les commandes à exécuter, avec les paramètres, pour tester votre programme, et les éventuelles autres manipulations possibles.
+
+Faites en sorte qu'il ne soit pas nécessaire de modifier et recompiler le code pour tester avec différents paramètres : mettez tout ce qui peut changer en paramètre de votre programme (./prog fichier.txt ...) et documentez le README en conséquence.
+
+Assurez-vous que le test de votre application puisse se faire simplement et efficacement, et qu’il soit possible de reproduire le plus simplement possible les résultats fournis dans le rapport.
+
+L'ensemble des fichiers de votre application doit être compressé dans une archive (.zip ou .tar.gz) identifiée avec le nom de l’auteur et déposée sur Moodle, dans le dépôt prévu à cet effet, avant la date limite du lundi 11 mai 9h00.
+
+Pour le rapport, vous devez le déposer sur Moodle en format .pdf, dans le dépôt prévu à cet effet, avant le lundi 11 mai 9h00.
+
+La présentation de type powerpoint doit être déposée sur Moodle, dans le dépôt prévu à cet effet, avant le mardi 12 mai 7h00.
+
+Modifié le: mercredi 25 mars 2026, 15:00

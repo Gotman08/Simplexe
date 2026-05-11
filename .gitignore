@@ -1,0 +1,34 @@
+# --- Artefacts de compilation C (Separation-Evaluation) ---
+Separation-Evaluation/obj/
+Separation-Evaluation/bin/
+Separation-Evaluation/doc/
+*.o
+*.a
+
+# --- Python (OR-Tools, scripts) ---
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+*.egg-info/
+
+# --- Configuration locale (non versionnée) ---
+Separation-Evaluation/config.cfg
+OR-Tools/config.ini
+
+# --- Editeurs / IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Système d'exploitation ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Logs ---
+*.log

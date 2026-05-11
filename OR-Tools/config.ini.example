@@ -1,0 +1,18 @@
+; Fichier de configuration exemple - OR-Tools
+; Les options ci-dessous correspondent aux flags CLI de main.py.
+; Cet exemple n'est pas charge automatiquement : il documente les valeurs par defaut.
+
+[ukp]
+solveur     = CBC                ; CBC | SCIP
+timeout_s   = 10
+
+[tsp]
+metaheuristique = GUIDED_LOCAL_SEARCH   ; GUIDED_LOCAL_SEARCH | SIMULATED_ANNEALING | TABU_SEARCH | AUTOMATIC
+timeout_s   = 10
+
+[benchmark]
+inclure_grands = false
+binaire_c      = ../Separation-Evaluation/bin/solveur
+
+[visualisation]
+dpi   = 300

@@ -1,0 +1,267 @@
+Passer au contenu principal
+Accès au tableau de bord
+Tableau de bord
+Plus
+8
+CHPS_0805
+TP 5 - Développement en C d’une méthode de résolution optimale du problème du Voyageur de Commerce
+TP 5 - Développement en C d’une méthode de résolution optimale du problème du Voyageur de Commerce
+
+TP 5 - Développement en C d’une méthode de résolution optimale du problème du Voyageur de Commerce
+Conditions d’achèvement
+L'objectif de ce TP est de programmer une méthode par séparation et évaluation pour résoudre de façon optimale le problème du voyageur de commerce. Pour ce faire, nous utiliserons le graphe du TP 4 :
+
+
+
+Vous pouvez télécharger le fichier de données correspondant à ce graphe ici : graphe_2.txt.
+
+Vous avez normalement déjà écrit le code qui permet de lire ce fichier et de construire le tableau d’arêtes : vérifiez quand même le résultat, juste au cas…
+
+0   3   4   2   7
+3   0   4   7   3
+4   4   0   5   8
+2   7   5   0   6
+7   3   8   6   0
+0 1 3
+0 2 4
+0 3 2
+0 4 7
+1 2 4
+1 3 7
+1 4 3
+2 3 5
+2 4 8
+3 4 6
+Si vous n’obtenez pas la matrice d’adjacences et le tableau d’arêtes ci-haut, retravaillez votre TP 4 !
+ 
+
+Énumération des cycles hamiltoniens d'un graphe complet
+Les codes enumeration.h et enumeration.c permettent d'énumérer tous les cycles hamiltoniens d'un graphe complet et d’en déterminer un de longueur minimale. Plus spécifiquement, la fonction enum_cycles_ham prend un nombre de sommets et une matrice d’adjacences correspondant à un graphe en paramètres, et affiche un cycle hamiltonien de longueur minimale présent dans ce graphe.
+
+Reprenez ces codes et adaptez-les pour qu'ils fonctionnent dans votre programme selon vos structures de données. Vérifiez bien que vous obtenez le résultat suivant :
+
+Longueur : 25 | 0 1 2 3 4
+
+Longueur : 23 | 0 1 2 4 3
+
+Longueur : 30 | 0 1 3 2 4
+…
+Longueur : 30 | 0 4 2 3 1
+
+Cycle hamiltorien minimum :
+0 2 1 4 3
+Longueur : 19
+Vous noterez que dans ce code, une bonne partie des doublons ne sont pas affichés mais il en reste quand même quelques-uns. Vous pouvez tester ce code sur d’autres problèmes, mais il n’est pas recommandé de l’exécuter si le problème est de grande taille !
+
+Vous connaissez maintenant toutes les solutions possibles à ce problème. Par contre, cette façon de faire n'est pas très efficace. Il est maintenant temps de faire mieux par une méthode par séparation et évaluation. Nous avons toutefois préalablement besoin de certaines fonctions permettant de calculer la borne, évaluer un sommet, vérifier si une évaluation est exacte et déterminer un sommet de degré supérieur à 2 et les arêtes qui sont incidentes à ce sommet.
+
+
+Calcul de la borne initiale – Heuristique du plus proche voisin
+L'heuristique du plus proche voisin permet de trouver une solution approchée au problème du voyageur de commerce. Elle consiste à sélectionner un sommet de départ arbitraire, puis de choisir successivement le sommet non encore sélectionné qui est de plus courte distance du dernier sommet sélectionné. L'algorithme se termine lorsque tous les sommets ont été sélectionnés.
+
+Écrivez une fonction implémentant l'heuristique du plus proche voisin à partir du sommet 0. Vérifiez que vous obtenez bien le résultat suivant :
+
+Heuristique du plus proche voisin a partir du sommet 0 :
+0 3 2 1 4
+Longueur : 21
+Cette solution sera utilisée comme borne initiale de la méthode par séparation et évaluation.
+
+Fonction d'évaluation – Arbre couvrant de poids minimal du graphe excluant le sommet 0 + les deux arêtes les plus légères adjacentes au sommet 0
+Vous avez normalement déjà écrit au TP 4 le code permettant de générer un arbre couvrant de poids minimal d’un graphe excluant le sommet 0.
+
+Vérifiez quand même le résultat juste au cas… :
+
+Arbre couvrant de poids minimal excluant le sommet 0 :
+1 4 3
+1 2 4
+2 3 5
+Longueur de l'arbre : 12
+
+Aretes sommet 0 :
+0 3 2
+0 1 3
+Evaluation de G - x0 : 17
+La longueur de la solution ainsi obtenue correspond à l'évaluation de la racine de l'arborescence de séparation et évaluation. Ce calcul, qui servira pour l'évaluation de chaque sommet de l'arborescence durant l'application de la méthode de séparation et évaluation, génère une solution qui peut être exacte ou non. Elle est exacte si la solution obtenue est un cycle hamiltonien, ce qu'il faut donc vérifier.
+
+Vérification de l'obtention d'un cycle hamiltonien
+Une solution est un cycle hamiltonien si tous ses sommets ont un degré égal à 2, ce que l’on peut vérifier à partir de l’ensemble des arêtes de la solution. Dans l'application de la méthode par séparation et évaluation, ceci permettra de définir si l'évaluation est exacte ou non.
+
+Écrivez une fonction qui, à partir des arêtes d'une solution, en l’occurrence celle obtenue par la fonction d’évaluation de la question précédente, détermine si la solution est un cycle hamiltonien. Vous vous en douterez, vous devriez ici obtenir le résultat :
+
+Cette solution n’est pas un cycle hamiltonien...
+Détermination d’un sommet de degré > 2
+Lorsque l’évaluation n’est pas exacte, c’est-à-dire lorsque la solution obtenue n’est pas un cycle hamiltonien, cela signifie forcément qu’il existe dans la solution au moins un sommet de degré plus grand que 2.
+
+Écrivez une fonction qui, à partir d’une solution obtenue par la fonction d’évaluation, identifie un sommet de degré strictement supérieur à 2 et son degré. Dans le cas présent, vous devriez obtenir :
+
+Sommet de degre > 2 : 1, degre : 3
+Ce sommet pourra faire l’objet de l’application du critère de séparation.
+
+Critère de séparation - Identification des arêtes à interdire
+Une fois que l’on connait un sommet de degré strictement supérieur à 2, il faut identifier les arêtes incidentes à ce sommet.
+
+Écrivez le code qui, à partir d’une solution obtenue par la fonction d’évaluation et d’un sommet spécifique, affiche les arêtes incidentes à ce sommet. Dans le cas présent, vous devriez obtenir :
+
+Arete 1 a interdire : 1 4
+Arete 2 a interdire : 1 2
+Arete 3 a interdire : 0 1
+Cela indique que dans le cadre de la méthode par séparation et évaluation, il faudra créer 3 fils à partir du nœud associé à cette solution.
+
+Méthode par séparation et évaluation
+Maintenant que nous savons calculer une borne, évaluer un sommet, déterminer si une évaluation est exacte ou non, déterminer un sommet de degré > 2 et identifier les arêtes incidentes à ce sommet, il reste à programmer la méthode par séparation et évaluation. Le pseudo-code suivant donne un aperçu de la méthode en utilisant une stratégie de développement de type « meilleur d’abord » et en supposant que la borne initiale a été calculée au préalable :
+
+Évaluer le sommet par la fonction d'évaluation
+Si l'évaluation obtenue est plus petite que la borne
+      Vérifier si le graphe obtenu est un cycle hamiltonien
+      Si le graphe est un cycle hamiltonien (évaluation exacte)
+            Mettre à jour la borne avec la longueur du cycle
+      Sinon
+            Trouver dans le graphe un sommet de degré strictement supérieur à 2
+            Appliquer le critère de séparation pour générer et évaluer les fils
+            Refaire le processus à partir du sommet possédant la meilleure évaluation
+
+L’algorithme se termine lorsqu’il n’y a plus aucun sommet à évaluer. Il vous reste à déterminer comment générer et gérer l’arborescence de séparation-évaluation…
+
+Écrivez le code implémentant une méthode par séparation et évaluation pour le problème du voyageur de commerce.
+
+Générez un affichage semblable au suivant (qui reprend l'exemple traité au TP 4) :
+
+Probleme a resoudre :
+Nombre de sommets : 5
+Graphe non oriente
+Nombre d'aretes : 10
+Graphe value
+
+Matrice d'adjacence:
+  0   3   4   2   7
+  3   0   4   7   3
+  4   4   0   5   8
+  2   7   5   0   6
+  7   3   8   6   0
+
+Tableau des aretes :
+0 1 3
+0 2 4
+0 3 2
+0 4 7
+1 2 4
+1 3 7
+1 4 3
+2 3 5
+2 4 8
+3 4 6
+
+Enumeration des cycles hamiltoniens du graphe :
+Longueur : 25 | 0 1 2 3 4
+Longueur : 23 | 0 1 2 4 3
+Longueur : 30 | 0 1 3 2 4
+Longueur : 28 | 0 1 3 4 2
+Longueur : 21 | 0 1 4 3 2
+Longueur : 21 | 0 1 4 2 3
+Longueur : 28 | 0 2 1 3 4
+Longueur : 19 | 0 2 1 4 3
+Longueur : 26 | 0 2 3 1 4
+Longueur : 21 | 0 2 3 4 1
+Longueur : 28 | 0 2 4 3 1
+Longueur : 24 | 0 2 4 1 3
+Longueur : 21 | 0 3 2 1 4
+Longueur : 21 | 0 3 2 4 1
+Longueur : 28 | 0 3 1 2 4
+Longueur : 24 | 0 3 1 4 2
+Longueur : 19 | 0 3 4 1 2
+Longueur : 23 | 0 3 4 2 1
+Longueur : 30 | 0 4 2 3 1
+
+Cycle hamiltonien minimum :
+0 2 1 4 3
+Longueur : 19
+
+Heuristique du plus proche voisin a partir du sommet 0 :
+0 3 2 1 4 0
+Longueur : 21
+
+Evaluation de la racine :
+ACPM de G - x0 :
+1 4 3
+1 2 4
+2 3 5
+Aretes les plus legeres incidentes au sommet 0 :
+0 3 2
+0 1 3
+Evaluation : 17
+Cette solution n'est pas un cycle hamiltonien
+
+***Debut Branch and Bound***
+
+S1 :
+Aretes retenues : (1,4) 3, (1,2) 4, (2,3) 5, (0,3) 2, (0,1) 3
+Evaluation : 17
+Evaluation < Borne
+Evaluation non exacte
+
+S2 :
+Aretes interdites : (1,4)
+Evaluation : 20
+Aretes retenues : (1,2) 4, (2,3) 5, (3,4) 6, (0,3) 2, (0,1) 3
+Evaluation < Borne
+Evaluation non exacte
+
+S3 :
+Aretes interdites : (1,2)
+Evaluation : 19
+Aretes retenues : (1,4) 3, (2,3) 5, (3,4) 6, (0,3) 2, (0,1) 3
+Evaluation < Borne
+Evaluation non exacte
+
+S4 :
+Aretes interdites : (0,1)
+Evaluation : 18
+Aretes retenues : (1,4) 3, (1,2) 4, (2,3) 5, (0,3) 2, (0,2) 4
+Evaluation < Borne
+Evaluation non exacte
+
+S5 :
+Aretes interdites : (1,2) (0,1)
+Evaluation : 20
+Aretes retenues: (1,4) 3, (2,3) 5, (3,4) 6, (0,3) 2, (0,2) 4
+Evaluation < Borne
+Evaluation non exacte
+
+S6 :
+Aretes interdites : (2,3) (0,1)
+Evaluation : 19
+Aretes retenues : (1,4) 3, (1,2) 4, (3,4) 6, (0,3) 2, (0,2) 4
+Evaluation < Borne
+Evaluation exacte ! Mise a jour de la borne
+
+S7 :
+Aretes interdites : (0,2) (0,1)
+Evaluation : 21
+Aretes retenues : (1,4) 3, (1,2) 4, (2,3) 5, (0,3) 2, (0,4) 7
+Evaluation >= Borne
+
+Noeud existant devenu >= Borne
+
+Noeud existant devenu >= Borne
+
+Noeud existant devenu >= Borne
+
+***Fin Branch and Bound***
+Nombre de noeuds generes : 7
+
+Cycle hamiltonien minimum :
+1 4 3
+1 2 4
+3 4 6
+0 3 2
+0 2 4
+Longueur : 19
+Comparez les solutions et les temps d'exécution obtenus sur les problèmes :
+
+graphe_12.txt
+graphe_13.txt
+graphe_14.txt
+graphe_15.txt
+Finalement, s'il vous reste du temps, améliorez votre programme pour aller plus vite (si vous le pouvez) !
+
+Modifié le: mardi 17 mars 2026, 13:56

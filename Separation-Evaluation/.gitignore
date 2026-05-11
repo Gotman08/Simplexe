@@ -1,0 +1,5 @@
+obj/
+bin/
+doc/
+*.o
+*.log

@@ -1,0 +1,225 @@
+Passer au contenu principal
+Accès au tableau de bord
+Tableau de bord
+Plus
+8
+CHPS_0805
+TP 3 - Développement en C/GLPK d'une méthode de résolution optimale du problème du Sac à Dos
+TP 3 - Développement en C/GLPK d'une méthode de résolution optimale du problème du Sac à Dos
+
+TP 3 - Développement en C/GLPK d'une méthode de résolution optimale du problème du Sac à Dos
+Conditions d’achèvement
+L’objectif de ce TP est de programmer une méthode par séparation et évaluation (branch and bound) pour résoudre de façon optimale le problème du sac à dos à l'aide du solveur GLPK. Nous utiliserons comme exemple le programme linéaire en nombres entiers suivant comme exemple (vu en cours) :
+
+
+
+Vous pouvez télécharger le fichier de données correspondant à ce problème ici : prob_sac_1.txt
+
+Lecture du fichier de données
+Vous noterez que la structure du fichier correspond à celle d'un programme linéaire tel que vu au TP 1 et que vous avez traité ce type de fichier avec GLPK au TP 2. Par conséquent, la fonction de lecture de programme linéaire de ce TP devrait faire l'affaire. Vérifiez quand même le résultat à l'écran.
+
+Calcul de la borne initiale : Approche heuristique qualité-prix
+L'approche heuristique qualité-prix permet de trouver une solution approchée au problème du sac à dos. Elle consiste à classer les variables en ordre décroissant de leur rapport utilité/volume, puis à donner à chaque variable la plus grande valeur entière possible en tenant compte des choix précédents et de la contrainte de volume total.
+
+Écrivez une fonction implémentant l'approche heuristique qualité-prix. Vérifiez que vous obtenez bien le résultat suivant :
+
+Heuristique qualite-prix :
+x1 = 1, x2 = 0, x3 = 0
+Utilite totale : 10
+Cette solution sera utilisée comme borne initiale de la méthode par séparation et évaluation.
+
+Fonction d'évaluation de la racine de l'arbre de l'arborescence de séparation-évaluation : Résolution du programme linéaire en variables réelles
+Une méthode par séparation et évaluation nécessite l'utilisation d'une fonction d'évaluation qui permettra d'évaluer un sommet de l'arborescence en cours de construction. Dans la méthode proposée, cette évaluation consistera en l'utilité obtenue par la résolution du programme linéaire en variables réelles, c'est-à-dire avec relaxation de la contrainte d'intégrité des variables. Pour ce faire, nous utiliserons le solveur GLPK.
+
+Écrivez une fonction permettant de résoudre le programme linéaire initial en variables réelles en utilisant GLPK. Vérifiez que vous obtenez bien le résultat suivant :
+
+Resolution en variables reelles : 
+x1 = 1.5, x2 = 0, x3 = 0
+Utilite totale : 15
+L'utilité totale ainsi obtenue correspond à l'évaluation de la racine de l'arborescence de séparation et évaluation. Ce calcul, qui servira pour l'évaluation de chaque sommet de l'arborescence durant l'application de la méthode de séparation et évaluation, génère une solution qui peut être exacte ou non. Elle est exacte si toutes les variables sont entières, ce qu'il faut donc vérifier.
+
+Vérification de l'obtention d'une solution à variables entières
+Une solution est à variables entières si tous ses xj sont des entiers. Comme la résolution en variables réelles, telle que son nom l'indique, attribue des valeurs réelles à des variables de type réel, il faut déterminer si ces variables représentent en fait des valeurs entières ou non. Dans l'application de la méthode par séparation et évaluation, ceci permettra de définir si l'évaluation est exacte ou non.
+
+Écrivez une fonction qui, à partir d'une solution en variables réelles, détermine si les valeurs des xj sont tous des entiers ou non. Pour ce faire, on peut utiliser la fonction modf de la bibliothèque math.h pour vérifier si la partie fractionnaire de la valeur donnée en paramètre est différente de 0. Après application à la solution obtenue à la question précédente, vous vous en douterez, vous devriez déterminer que la solution n'est pas à variables entières.
+
+Méthode par séparation et évaluation
+Maintenant que nous savons calculer une borne, évaluer un sommet et déterminer si une évaluation est exacte ou non, il reste à programmer la méthode par séparation et évaluation. Le pseudo-code suivant donne un aperçu de la procédure en utilisant une stratégie de développement en profondeur et en supposant que la borne initiale a été calculée au préalable :
+
+Évaluer le sommet par la fonction d'évaluation
+Si l'évaluation obtenue est plus grande que la borne
+     Vérifier si la solution obtenue est en variables entières
+     Si la solution est en variables entières (évaluation exacte)
+          Mettre à jour la borne avec cette solution
+     Sinon
+          Identifier la variable non entière
+          Pour chaque valeur possible de cette variable
+               Générer le noeud associé à cette variable et refaire la procédure à partir de ce noeud
+
+Écrivez une fonction implémentant une méthode par séparation et évaluation pour le problème du sac à dos (bien qu'il soit possible de la développer de façon récursive, il est fortement conseillé de le faire de façon itérative).
+
+Générez un affichage semblable au suivant (qui reprend l'exécution de la méthode présentée en cours) :
+
+Probleme a resoudre :
+
+Maximiser z = +  10.00 x1 +   8.00 x2 +   5.00 x3
+Sous les contraintes
++   6.00 x1 +   5.00 x2 +   4.00 x3 <= +   9.00
+x1 >= 0, x2 >= 0, x3 >= 0
+
+Calcul de la borne initiale : Heuristique qualite-prix :
+x1 = 1, x2 = 0, x3 = 0
+Utilite totale = 10
+
+Evaluation de la racine : resolution en variables reelles :
+
+GLPK Simplex Optimizer 5.0
+1 row, 3 columns, 3 non-zeros
+*     0: obj =  -0.000000000e+00 inf =   0.000e+00 (3)
+*     1: obj =   1.500000000e+01 inf =   0.000e+00 (0)
+OPTIMAL LP SOLUTION FOUND
+
+x1 = 1.5, x2 = 0, x3 = 0
+Utilite totale = 15
+Evaluation non exacte
+
+Debut de la procedure de separation-evaluation
+
+S1 :
+x1 = 1.5, x2 = 0, x3 = 0
+z = 15
+Evaluation non exacte
+Variable non entiere : x1
+
+S2 :
+x1 = 0, x2 = 1.8, x3 = 0
+z = 14.4
+Evaluation non exacte
+Variable non entiere : x2
+
+S3 :
+x1 = 0, x2 = 0, x3 = 2.25
+z = 11.25
+Evaluation non exacte
+Variable non entiere : x3
+
+S4 :
+x1 = 0, x2 = 0, x3 = 0
+z = 0
+Evaluation plus petite ou egale a la borne
+
+S5 :
+x1 = 0, x2 = 0, x3 = 1
+z = 5
+Evaluation plus petite ou egale a la borne
+
+S6 :
+x1 = 0, x2 = 0, x3 = 2
+z = 10
+Evaluation plus petite ou egale a la borne
+
+S7 :
+x1 = 0, x2 = 1, x3 = 1
+z = 13
+Evaluation exacte ! - Mise à jour de la borne
+
+S8 :
+x1 = 1, x2 = 0.6, x3 = 0
+z = 14.8
+Evaluation non exacte
+Variable non entiere : x2
+
+S9 :
+x1 = 1, x2 = 0, x3 = 0.75
+z = 13.75
+Evaluation plus petite ou egale a la borne
+
+Fin de la procedure de separation-evaluation
+
+Solution optimale :
+x1 = 0, x2 = 1, x3 = 1,
+Utilite totale = 13
+Comparez finalement les solutions et les temps d'exécution obtenus sur les problèmes suivants :
+
+prob_sac_2.txt
+prob_sac_3.txt
+prob_sac_4.txt
+prob_sac_5.txt
+Exemple d'affichage pour prob_sac_3.txt qui est le problème traité au TP 2 :
+
+Probleme a resoudre :
+
+Maximiser z = +  15.00 x1 +  12.00 x2 +   2.00 x3 +   8.00 x4
+Sous les contraintes
++   5.00 x1 +   3.00 x2 +   2.00 x3 +   4.00 x4 <= +  14.00
+x1 >= 0, x2 >= 0, x3 >= 0, x4 >= 0
+
+Calcul de la borne initiale : Heuristique qualite-prix :
+x1 = 0, x2 = 4, x3 = 1, x4 = 0
+Utilite totale = 50
+
+Evaluation de la racine : resolution en variables reelles :
+
+GLPK Simplex Optimizer 5.0
+1 row, 4 columns, 4 non-zeros
+*     0: obj =  -0.000000000e+00 inf =   0.000e+00 (4)
+*     2: obj =   5.600000000e+01 inf =   0.000e+00 (0)
+OPTIMAL LP SOLUTION FOUND
+
+x1 = 0, x2 = 4.66667, x3 = 0, x4 = 0
+Utilite totale = 56
+Evaluation non exacte
+
+Debut de la procedure de separation-evaluation
+
+S1 :
+x1 = 0, x2 = 4.66667, x3 = 0, x4 = 0
+z = 56
+Evaluation non exacte
+Variable non entiere : x2
+
+S2 :
+x1 = 2.8, x2 = 0, x3 = 0, x4 = 0
+z = 42
+Evaluation plus petite ou egale a la borne
+
+S3 :
+x1 = 2.2, x2 = 1, x3 = 0, x4 = 0
+z = 45
+Evaluation plus petite ou egale a la borne
+
+S4 :
+x1 = 1.6, x2 = 2, x3 = 0, x4 = 0
+z = 48
+Evaluation plus petite ou egale a la borne
+
+S5 :
+x1 = 1, x2 = 3, x3 = 0, x4 = 0
+z = 51
+Evaluation exacte ! - Mise à jour de la borne
+
+S6 :
+x1 = 0.4, x2 = 4, x3 = 0, x4 = 0
+z = 54
+Evaluation non exacte
+Variable non entiere : x1
+
+S7 :
+x1 = 0, x2 = 4, x3 = 0, x4 = 0.5
+z = 52
+Evaluation non exacte
+Variable non entiere : x4
+
+S8 :
+x1 = 0, x2 = 4, x3 = 1, x4 = 0
+z = 50
+Evaluation plus petite ou egale a la borne
+
+Fin de la procedure de separation-evaluation
+
+Solution optimale :
+x1 = 1, x2 = 3, x3 = 0, x4 = 0,
+Utilite totale = 51
+N'hésitez pas à soumettre vos résultats (solutions obtenues, nombre de noeuds, ...) obtenus à l'enseignant pour validation !
+
+Modifié le: mercredi 18 février 2026, 16:40

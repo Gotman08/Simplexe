@@ -1,0 +1,2 @@
+instance,n,capacite,valeur,volume,temps_s,noeuds,statut
+prob_sac_20,20,125995,125942,125992,0.1205945660000225,16730,OPTIMAL

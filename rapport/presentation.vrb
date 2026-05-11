@@ -1,0 +1,23 @@
+\frametitle{Démonstration et questions}
+\begin{block}{Commandes pour la démo live}
+\begin{lstlisting}[basicstyle=\ttfamily\tiny, language=bash]
+# Compilation C
+cd Separation-Evaluation && make
+./bin/solveur --probleme ukp --fichier "../Fichiers tests*/prob_sac_1.txt" --verbose
+
+# OR-Tools + visualisation
+python OR-Tools/main.py --probleme tsp --fichier "../Fichiers tests*/pd_22.tsp" --visu
+
+# Pipeline complet (~2h sur Romeo, ~1h en local)
+bash scripts/run_benchmark_pousse.sh --inclure-grands
+
+# Audit qualite (DP exhaustive comme oracle)
+bash scripts/_verif_dp_complete.sh
+\end{lstlisting}
+\end{block}
+
+\vfill
+\centering
+{\huge \textbf{Merci de votre attention.}} \\[0.6em]
+{\Large Questions~?}
+\vfill

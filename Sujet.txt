@@ -1,0 +1,74 @@
+Passer au contenu principal
+Accès au tableau de bord
+Tableau de bord
+Plus
+8
+CHPS_0805
+Projet
+Résolution de problèmes d’optimisation combinatoire avec OR-Tools
+
+Résolution de problèmes d’optimisation combinatoire avec OR-Tools
+Conditions d’achèvement
+Le projet consiste à développer des méthodes de résolution du problème du Voyageur de Commerce (Traveling Salesman Problem (TSP)) et du problème du Sac à Dos Généralisé (Unbounded Knapsack Problem (UKP) en Python en utilisant OR-Tools (https://developers.google.com/optimization?hl=fr), et d’en faire une étude comparative avec les méthodes par Séparation-Évaluation développées dans les TP 3 et 5.
+
+L’évaluation est basée sur des codes à remettre, un rapport écrit et un exposé oral devant le professeur. Le projet doit être réalisé individuellement. Les différentes étapes pour la réalisation de ce projet sont expliquées dans la suite.
+
+Partie 1 : Finalisation des TP 3 et 5
+Dans un premier temps, si ce n’est pas déjà fait, vous devez compléter les implémentations des algorithmes de séparation-évaluation des TP 3 et 5.
+
+Pour le UKP, votre application doit résoudre les problèmes :
+
+prob_sac_1.txt
+prob_sac_2.txt
+prob_sac_3.txt
+prob_sac_4.txt
+prob_sac_5.txt
+Pour le TSP, elle doit résoudre les problèmes :
+
+graphe_12.txt
+graphe_13.txt
+graphe_14.txt
+graphe_15.txt
+Partie 2 : Implémentations Python/OR-Tools
+Dans la deuxième partie, vous devez développer une application Python/OR-Tools qui lit les fichiers de la Partie 1 et résout les problèmes associés en utilisant les bibliothèques pywraplp et pywrapcp, tel que présenté dans le cours 7.
+
+Partie 3 : Résolution de problèmes de plus grande taille
+La dernière partie de votre projet consiste à implémenter les fonctionnalités permettant de résoudre des instances de plus grande taille à l’aide des applications développées dans les parties 1 et 2. Ces instances ont des formats de fichier différents des précédents alors vous devez adapter vos codes en conséquence.
+
+Pour le UKP, les fichiers des problèmes à résoudre sont
+
+prob_sac_10.txt
+prob_sac_20.txt
+prob_sac_25.txt
+prob_sac_30.txt
+prob_sac_2000.txt
+prob_sac_20000.txt
+Dans ces fichiers, la première ligne indique le nombre d’objets différents n, la deuxième ligne indique la capacité totale du sac c, et les n lignes suivantes contiennent les informations sur les n objets (la première ligne correspond au premier objet, la deuxième ligne au deuxième objet, etc.) : la première valeur indique le volume de l’objet et la deuxième valeur indique son utilité.
+
+Pour le TSP, les problèmes à résoudre sont
+
+pd_5.tsp
+pd_11.tsp
+pd_15.tsp
+pd_18.tsp
+pd_20.tsp
+pd_22.tsp
+pd_59.tsp
+canada_4663.tsp
+usa_13509.tsp
+Vous trouverez un fichier de documentation sur le format des fichiers ici : tsp95.pdf.
+
+Plus spécifiquement, vous devez utiliser ce document pour réaliser le calcul des distances pour les fichiers ci-haut.
+
+Attention, vous pourriez trouver d'autres méthodes de calcul dans d'autres documentations ou bibliothèques, mais celles-ci pourraient donner des résultats légèrement différents et ainsi fausser les données calculées et donc les résultats des programmes. Utilisez strictement celles précisées dans le document.
+Vous trouverez également plus d'informations sur les problèmes de type TSPLIB sur les sites Web suivants :
+
+http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/
+https://www.math.uwaterloo.ca/tsp/data/index.html
+Il est possible que la résolution soit longue voire difficile dans certains cas, notamment pour les plus gros problèmes. Si vos implémentations n’arrivent pas à résoudre certaines instances, vous l’indiquerez dans votre rapport en expliquant les difficultés rencontrées.
+
+Les modalités d'évaluation et de remise de ce projet/TP sont données dans la section Modalités d'évaluation et de remise.
+
+Les directives et explications énoncées ci-haut correspondent à la partie de base obligatoire du projet. Si vous ne faites pas tout (par choix ou par contrainte...), vous pouvez présenter (par écrit et oralement) ce que vous avez fait et ce sera évalué.
+À l'opposé, si vous avez terminé la partie de base et voulez aller plus loin en apportant des "contributions personnelles", notamment sur l'amélioration des algorithmes utilisés, leur paramétrage, le développement ou l'utilisation d'algorithmes différents, etc., vous pouvez les ajouter à vos codes, rapport et présentation, et celles-ci pourront bonifier l'évaluation de votre travail.
+Modifié le: mercredi 25 mars 2026, 15:00

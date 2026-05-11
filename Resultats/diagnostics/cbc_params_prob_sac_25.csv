@@ -1,0 +1,10 @@
+config,solveur,params,statut,obj_solver,util_recalc,volume,temps_s,n_noeuds,items_nz
+C0_baseline,CBC,,OPTIMAL,285934.0,285934,13570,0.011780,15,x3=28; x4=1; x8=33; x21=2; x23=2
+C1_gap_zero,CBC,allowableGap 0 ratioGap 0,OPTIMAL,285934.0,285934,13570,0.010657,15,x3=28; x4=1; x8=33; x21=2; x23=2
+C2_inttol_serre,CBC,integerTolerance 1e-12,OPTIMAL,285934.0,285934,13570,0.010720,15,x3=28; x4=1; x8=33; x21=2; x23=2
+C3_sans_heuristiques,CBC,heuristicsOnOff off,OPTIMAL,285934.0,285934,13570,0.012818,15,x3=28; x4=1; x8=33; x21=2; x23=2
+C4_sans_coupes,CBC,cutsOnOff off,OPTIMAL,285934.0,285934,13570,0.010846,15,x3=28; x4=1; x8=33; x21=2; x23=2
+C5_sans_presolveur,CBC,preprocess off,OPTIMAL,285934.0,285934,13570,0.011618,15,x3=28; x4=1; x8=33; x21=2; x23=2
+C6_tout_brut,CBC,allowableGap 0 ratioGap 0 integerTolerance 1e-12 cutsOnOff off heuristicsOnOff off preprocess off,OPTIMAL,285934.0,285934,13570,0.010200,15,x3=28; x4=1; x8=33; x21=2; x23=2
+C7_SCIP,SCIP,,OPTIMAL,285909.0,285909,13569,0.011761,1,x3=91; x4=12; x8=20; x14=3
+C8_BOP,BOP,,OPTIMAL,285934.0,285934,13570,0.024605,-1,x3=4; x14=32; x20=1; x21=1
