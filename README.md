@@ -4,7 +4,7 @@ C branch-and-bound matches exact reference objectives on **16 checked instances*
 
 ## Abstract
 
-This individual CHPS_0805 coursework project compares implementations of the travelling salesperson problem (TSP) and unbounded knapsack problem (UKP). The C application combines branch-and-bound with GLPK relaxations for UKP and minimum spanning tree bounds for TSP. The Python application uses OR-Tools CBC for UKP and RoutingModel with guided local search for TSP. The latter is a heuristic search with a time limit. The repository includes the supplied instances, the original report and a reproducible correctness check. Performance comparisons are **not measured in this revision**; this utility retains historical experiments separately.
+This individual CHPS_0805 coursework project compares implementations of the travelling salesperson problem (TSP) and unbounded knapsack problem (UKP). The C application combines branch-and-bound with GLPK relaxations for UKP and minimum spanning tree bounds for TSP. The Python application uses OR-Tools CBC for UKP and RoutingModel with guided local search for TSP. The latter is a heuristic search with a time limit. The repository includes the supplied instances, the original report and a reproducible correctness check. Performance comparisons are **not measured (non mesuré)** in this revision because this utility audit validates correctness and did not run a timed comparison. Historical experiments remain separate.
 
 ## What works
 
