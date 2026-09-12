@@ -1,0 +1,60 @@
+usage: or-tools-solveur [-h] [-p {ukp,tsp}] [-f FICHIER] [-t TIMEOUT] [--visu]
+                        [--export EXPORT] [--benchmark] [--benchmark-pousse]
+                        [--reps-petits REPS_PETITS]
+                        [--reps-moyens REPS_MOYENS]
+                        [--reps-grands REPS_GRANDS] [--inclure-grands]
+                        [--phase {ukp_petits,ukp_moyens,ukp_grands,tsp_petits,tsp_moyens,tsp_grands}]
+                        [--accumuler] [--binaire-c BINAIRE_C]
+                        [--visualize TYPE INSTANCE]
+
+Solveur OR-Tools — UKP & TSP (CHPS_0805).
+
+options:
+  -h, --help            show this help message and exit
+  -p {ukp,tsp}, --probleme {ukp,tsp}
+                        Type de problème à résoudre.
+  -f FICHIER, --fichier FICHIER
+                        Chemin de l'instance (format auto-détecté).
+  -t TIMEOUT, --timeout TIMEOUT
+                        Timeout en secondes (défaut : 10).
+  --visu                Génère un PNG de la solution dans
+                        Resultats/visualisations/.
+  --export EXPORT       Répertoire d'export CSV (défaut :
+                        Resultats/solutions/).
+  --benchmark           Lance le benchmark complet (UKP + TSP, BB + OR-Tools).
+  --benchmark-pousse    Lance le benchmark exhaustif (multi-rep, mémoire,
+                        boxplots).
+  --reps-petits REPS_PETITS
+                        Nombre de répétitions sur les petites instances (def:
+                        5).
+  --reps-moyens REPS_MOYENS
+                        Nombre de répétitions sur les instances moyennes (def:
+                        3).
+  --reps-grands REPS_GRANDS
+                        Nombre de répétitions sur les grandes instances (def:
+                        2).
+  --inclure-grands      Avec --benchmark[-pousse] : inclut les très grandes
+                        instances.
+  --phase {ukp_petits,ukp_moyens,ukp_grands,tsp_petits,tsp_moyens,tsp_grands}
+                        Restreindre --benchmark-pousse a certaines phases
+                        (repetable).
+  --accumuler           Charge les CSV existants et complete les instances
+                        manquantes.
+  --binaire-c BINAIRE_C
+                        Chemin du binaire C (utilisé par --benchmark).
+  --visualize TYPE INSTANCE
+                        Visualise la solution sans afficher tout le détail.
+                        TYPE = ukp|tsp.
+Probleme UKP : prob_sac_1 (n = 3, capacité = 9)
+  Statut          : OPTIMAL
+  Utilité totale  : 13
+  Volume utilisé  : 9 / 9
+  Temps           : 0.003254 s
+  Affectation     : x2=1, x3=1
+  -> CSV : bench/results/2026-09-12/solutions/prob_sac_1_or.csv
+Probleme TSP : pd_5 (n = 5)
+  Statut          : OPTIMAL_OU_FAISABLE
+  Longueur        : 20
+  Temps           : 0.999936 s
+  Tour            : 0 1 2 4 3 -> 0
+  -> CSV : bench/results/2026-09-12/solutions/pd_5_or.csv

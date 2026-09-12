@@ -1,0 +1,79 @@
+2026-09-12T05:10:53+00:00
+Linux 6.6.87.2-microsoft-standard-WSL2 x86_64
+PRETTY_NAME="Ubuntu 24.04.4 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.4 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+Copyright (C) 2023 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+Copyright (C) 2023 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+GNU Make 4.3
+Built for x86_64-pc-linux-gnu
+Copyright (C) 1988-2020 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+libglpk-dev:amd64	5.0-1build2
+libglpk40:amd64	5.0-1build2
+mkdir -p obj
+mkdir -p bin
+cc -std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wcast-align -Wcast-qual -Wconversion -Wstrict-prototypes -Wmissing-prototypes -Wfloat-equal -Wundef -Wpointer-arith -Wwrite-strings -Wswitch-default -Wswitch-enum -Wunreachable-code -O2 -Iinclude -D_POSIX_C_SOURCE=200809L -c -o obj/common.o src/common.c
+cc -std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wcast-align -Wcast-qual -Wconversion -Wstrict-prototypes -Wmissing-prototypes -Wfloat-equal -Wundef -Wpointer-arith -Wwrite-strings -Wswitch-default -Wswitch-enum -Wunreachable-code -O2 -Iinclude -D_POSIX_C_SOURCE=200809L -c -o obj/main.o src/main.c
+cc -std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wcast-align -Wcast-qual -Wconversion -Wstrict-prototypes -Wmissing-prototypes -Wfloat-equal -Wundef -Wpointer-arith -Wwrite-strings -Wswitch-default -Wswitch-enum -Wunreachable-code -O2 -Iinclude -D_POSIX_C_SOURCE=200809L -c -o obj/output.o src/output.c
+cc -std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wcast-align -Wcast-qual -Wconversion -Wstrict-prototypes -Wmissing-prototypes -Wfloat-equal -Wundef -Wpointer-arith -Wwrite-strings -Wswitch-default -Wswitch-enum -Wunreachable-code -O2 -Iinclude -D_POSIX_C_SOURCE=200809L -c -o obj/parser_tsp.o src/parser_tsp.c
+cc -std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wcast-align -Wcast-qual -Wconversion -Wstrict-prototypes -Wmissing-prototypes -Wfloat-equal -Wundef -Wpointer-arith -Wwrite-strings -Wswitch-default -Wswitch-enum -Wunreachable-code -O2 -Iinclude -D_POSIX_C_SOURCE=200809L -c -o obj/parser_ukp.o src/parser_ukp.c
+cc -std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wcast-align -Wcast-qual -Wconversion -Wstrict-prototypes -Wmissing-prototypes -Wfloat-equal -Wundef -Wpointer-arith -Wwrite-strings -Wswitch-default -Wswitch-enum -Wunreachable-code -O2 -Iinclude -D_POSIX_C_SOURCE=200809L -c -o obj/timer.o src/timer.c
+cc -std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wcast-align -Wcast-qual -Wconversion -Wstrict-prototypes -Wmissing-prototypes -Wfloat-equal -Wundef -Wpointer-arith -Wwrite-strings -Wswitch-default -Wswitch-enum -Wunreachable-code -O2 -Iinclude -D_POSIX_C_SOURCE=200809L -c -o obj/tsp_bb.o src/tsp_bb.c
+cc -std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wcast-align -Wcast-qual -Wconversion -Wstrict-prototypes -Wmissing-prototypes -Wfloat-equal -Wundef -Wpointer-arith -Wwrite-strings -Wswitch-default -Wswitch-enum -Wunreachable-code -O2 -Iinclude -D_POSIX_C_SOURCE=200809L -c -o obj/tsplib.o src/tsplib.c
+cc -std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wcast-align -Wcast-qual -Wconversion -Wstrict-prototypes -Wmissing-prototypes -Wfloat-equal -Wundef -Wpointer-arith -Wwrite-strings -Wswitch-default -Wswitch-enum -Wunreachable-code -O2 -Iinclude -D_POSIX_C_SOURCE=200809L -c -o obj/ukp_bb.o src/ukp_bb.c
+cc  -o bin/solveur obj/common.o obj/main.o obj/output.o obj/parser_tsp.o obj/parser_ukp.o obj/timer.o obj/tsp_bb.o obj/tsplib.o obj/ukp_bb.o -lglpk -lm
+make: Warning: File 'bin/solveur' has modification time 0.1 s in the future
+--- Test UKP : prob_sac_1.txt ---
+Probleme UKP : prob_sac_1
+  Nombre d'objets : 3
+  Capacite : 9
+Heuristique qualite-prix : utilite = 10
+Mise a jour de la borne : 13
+
+=== Solution UKP ===
+Utilite totale : 13
+Volume utilise : 9 / 9
+LP racine     : 14.8000 (gap LP-INT = 1.8000, 13.8462 %)
+Affectation : x2=1, x3=1
+Borne initiale : 10
+Noeuds generes : 12
+Noeuds explores : 12
+Branches coupees : 6
+Temps : 0.001314 s
+
+--- Test TSP : graphe_12.txt ---
+Probleme TSP : graphe_12
+  Nombre de sommets : 12
+Heuristique plus proche voisin : longueur = 24
+Mise a jour de la borne : 23
+
+=== Solution TSP ===
+Longueur du tour : 23
+Tour : 0 3 5 2 1 11 8 4 9 7 10 6 0
+Borne initiale : 24
+Noeuds generes : 929
+Noeuds explores : 718
+Branches coupees : 662
+Temps : 0.000504 s
+make: warning:  Clock skew detected.  Your build may be incomplete.

@@ -1,0 +1,2 @@
+instance,n,capacite,valeur,volume,temps_s,noeuds,statut
+prob_sac_1,3,9,13,9,0.0032544829999991975,0,OPTIMAL
