@@ -56,7 +56,7 @@ Vous noterez que dans ce code, une bonne partie des doublons ne sont pas affich�
 Vous connaissez maintenant toutes les solutions possibles à ce problème. Par contre, cette façon de faire n'est pas très efficace. Il est maintenant temps de faire mieux par une méthode par séparation et évaluation. Nous avons toutefois préalablement besoin de certaines fonctions permettant de calculer la borne, évaluer un sommet, vérifier si une évaluation est exacte et déterminer un sommet de degré supérieur à 2 et les arêtes qui sont incidentes à ce sommet.
 
 
-Calcul de la borne initiale – Heuristique du plus proche voisin
+Calcul de la borne initiale : heuristique du plus proche voisin
 L'heuristique du plus proche voisin permet de trouver une solution approchée au problème du voyageur de commerce. Elle consiste à sélectionner un sommet de départ arbitraire, puis de choisir successivement le sommet non encore sélectionné qui est de plus courte distance du dernier sommet sélectionné. L'algorithme se termine lorsque tous les sommets ont été sélectionnés.
 
 Écrivez une fonction implémentant l'heuristique du plus proche voisin à partir du sommet 0. Vérifiez que vous obtenez bien le résultat suivant :
@@ -66,7 +66,7 @@ Heuristique du plus proche voisin a partir du sommet 0 :
 Longueur : 21
 Cette solution sera utilisée comme borne initiale de la méthode par séparation et évaluation.
 
-Fonction d'évaluation – Arbre couvrant de poids minimal du graphe excluant le sommet 0 + les deux arêtes les plus légères adjacentes au sommet 0
+Fonction d'évaluation : arbre couvrant de poids minimal du graphe excluant le sommet 0 + les deux arêtes les plus légères adjacentes au sommet 0
 Vous avez normalement déjà écrit au TP 4 le code permettant de générer un arbre couvrant de poids minimal d’un graphe excluant le sommet 0.
 
 Vérifiez quand même le résultat juste au cas… :

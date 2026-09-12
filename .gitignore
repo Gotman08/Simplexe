@@ -32,3 +32,21 @@ desktop.ini
 
 # --- Logs ---
 *.log
+!bench/results/*/*.log
+
+# LaTeX intermediates; retain the report sources and deliverable PDFs.
+rapport/*.aux
+rapport/*.nav
+rapport/*.out
+rapport/*.snm
+rapport/*.toc
+rapport/*.vrb
+rapport/*.lof
+rapport/*.lot
+rapport/*.fls
+rapport/*.fdb_latexmk
+rapport/*.synctex.gz
+
+# Local validation runs; the reviewed snapshot is tracked separately.
+bench/results/local/
+Resultats_romeo/

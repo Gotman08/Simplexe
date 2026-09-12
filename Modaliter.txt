@@ -14,9 +14,9 @@ Votre projet sera constitué en 3 parties : code, rapport écrit et exposé oral
 Code
 Vous devez fournir deux applications :
 
-Méthodes par séparation-évaluation – Implémentées en C
-Méthodes OR-Tools – Implémentées en python
-Pour chaque application, vous ne devez pas fournir des codes indépendants, mais un seul code unifié permettant à l'utilisateur d'utiliser – simplement et facilement – l'une et/ou l'autre des méthodes en paramétrant le programme (par exemple par des paramètres en ligne de commande et/ou par un fichier de configuration) selon une documentation d'utilisation que vous fournirez.
+Méthodes par séparation-évaluation : implémentées en C
+Méthodes OR-Tools : implémentées en python
+Pour chaque application, vous ne devez pas fournir des codes indépendants, mais un seul code unifié permettant à l'utilisateur d'utiliser simplement et facilement l'une et/ou l'autre des méthodes en paramétrant le programme (par exemple par des paramètres en ligne de commande et/ou par un fichier de configuration) selon une documentation d'utilisation que vous fournirez.
 
 Pour chaque application, vous devez fournir les fichiers source (.c ou .py) de vos programmes et un Readme (fichier texte). Pour l’application C, vous devez fournir un Makefile permettant de construire l’application. Les Readme doivent documenter la manipulation et l'exécution de chaque application sur un ordinateur sous Linux (incluant WSL) : ligne de commande avec paramètres à spécifier, éventuels fichiers de configuration à modifier, ….
 
